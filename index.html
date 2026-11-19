@@ -4,152 +4,453 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nexora - Rules & Regulations</title>
+
+<title>Nexora | Competition Rules</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg: #090611;
+    --surface: #120d20;
+    --surface-light: #1b1430;
+    --purple: #a855f7;
+    --purple-bright: #c084fc;
+    --pink: #e879f9;
+    --text: #f5f0ff;
+    --muted: #aaa0bd;
+    --border: rgba(192,132,252,0.17);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background: #ececec;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding: 55px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 25px;
+    position: relative;
+    overflow-x: hidden;
 }
 
+/* Background effects */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 15% 15%, rgba(126,34,206,0.22), transparent 40%),
+        radial-gradient(ellipse at 85% 80%, rgba(192,38,211,0.12), transparent 40%);
+    pointer-events: none;
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(168,85,247,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168,85,247,0.035) 1px, transparent 1px);
+    background-size: 45px 45px;
+    mask-image: linear-gradient(to bottom, black, transparent 90%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Main container */
+
 .container {
-    width: 900px;
+    width: 920px;
     max-width: 100%;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    background: rgba(18,13,32,0.94);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow:
+        0 0 70px rgba(126,34,206,0.12),
+        0 25px 70px rgba(0,0,0,0.45);
+}
+
+/* Header */
+
+header {
+    position: relative;
+    padding: 45px 42px 38px;
+    background:
+        linear-gradient(125deg, #24103f 0%, #35105b 48%, #190e32 100%);
+    border-bottom: 1px solid rgba(192,132,252,0.2);
     overflow: hidden;
 }
 
-header {
-    background: #1565C0;
-    color: white;
-    padding: 25px;
+header::after {
+    content: "N";
+    position: absolute;
+    right: 30px;
+    top: -65px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 280px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.035);
+    pointer-events: none;
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+}
+
+.top-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #e9d5ff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    background: #d8b4fe;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #c084fc;
 }
 
 header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(48px, 8vw, 76px);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -4px;
+    background: linear-gradient(90deg, #fff, #e9d5ff 60%, #d8b4fe);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 18px;
+}
+
+.org-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 7px;
+    border: 1px solid rgba(216,180,254,0.3);
+    background: rgba(168,85,247,0.13);
+    color: #e9d5ff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+}
+
+.subtitle {
+    color: #d6c4eb;
+    font-size: 15px;
+    margin-top: 22px;
     margin-bottom: 8px;
 }
 
-header p {
-    margin-bottom: 8px;
+.date {
+    color: #a995c4;
+    font-size: 12px;
+}
+
+/* Info strip */
+
+.info-strip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 42px;
+    background: #171025;
+    border-bottom: 1px solid var(--border);
+}
+
+.info-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: rgba(168,85,247,0.15);
+    color: #d8b4fe;
+    font-size: 16px;
+}
+
+.info-text {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.info-text strong {
+    color: #e9d5ff;
+}
+
+/* Rules area */
+
+.section-heading {
+    padding: 24px 42px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section-heading h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.section-heading span {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #a78bfa;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .terms {
-    height: 500px;
+    height: 470px;
     overflow-y: auto;
-    padding: 30px;
-    line-height: 1.7;
+    padding: 28px 42px 40px;
+    line-height: 1.8;
     scroll-behavior: smooth;
 }
 
+.terms::-webkit-scrollbar {
+    width: 6px;
+}
+
+.terms::-webkit-scrollbar-track {
+    background: #100b1c;
+}
+
+.terms::-webkit-scrollbar-thumb {
+    background: #7136a8;
+    border-radius: 10px;
+}
+
+.terms::-webkit-scrollbar-thumb:hover {
+    background: #a855f7;
+}
+
+/* Rule headings */
+
 h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: #d8b4fe;
+    font-size: 19px;
     margin-top: 30px;
-    margin-bottom: 10px;
-    color: #1565C0;
-    font-size: 20px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 h2:first-child {
     margin-top: 0;
 }
 
+h2::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 20px;
+    flex-shrink: 0;
+    background: linear-gradient(#c084fc, #a855f7);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(168,85,247,0.5);
+}
+
 p {
+    color: #c1b6d1;
+    font-size: 13.5px;
     margin-bottom: 15px;
     text-align: justify;
 }
 
+p b {
+    color: #e9d5ff;
+}
+
 ul {
-    margin: 0 0 18px 25px;
+    margin: 0 0 20px 24px;
+    color: #c1b6d1;
 }
 
 li {
-    margin-bottom: 8px;
+    font-size: 13.5px;
+    margin-bottom: 9px;
+    padding-left: 4px;
 }
 
-.org-badge {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 7px 13px;
-    background: rgba(255,255,255,0.16);
-    border: 1px solid rgba(255,255,255,0.35);
-    border-radius: 20px;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
+li::marker {
+    color: #c084fc;
 }
 
+/* AI warning */
+
+.terms h2:nth-of-type(3) {
+    color: #e9d5ff;
+}
+
+/* Footer */
 
 .footer {
-    border-top: 1px solid #ddd;
-    padding: 25px;
+    padding: 28px 42px 32px;
+    background: #100b1c;
+    border-top: 1px solid var(--border);
 }
 
-label {
-    font-size: 15px;
+.agreement {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    line-height: 1.5;
-}
-
-label input {
-    margin-top: 4px;
-    flex-shrink: 0;
-}
-
-button {
-    margin-top: 20px;
-    width: 100%;
-    padding: 16px;
-    border: none;
-    border-radius: 8px;
-    font-size: 17px;
-    background: #2d7ef7;
-    color: white;
+    gap: 12px;
+    color: #c9bdd9;
+    font-size: 13px;
+    line-height: 1.6;
     cursor: pointer;
-    transition: .3s;
 }
 
-button:not(:disabled):hover {
-    background: #1565C0;
+.agreement input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 19px;
+    height: 19px;
+    min-width: 19px;
+    border: 1px solid #76539b;
+    background: #1c142a;
+    border-radius: 5px;
+    margin-top: 1px;
+    cursor: pointer;
+    position: relative;
 }
 
-button:disabled {
-    background: #999;
+.agreement input:checked {
+    background: #a855f7;
+    border-color: #c084fc;
+}
+
+.agreement input:checked::after {
+    content: "✓";
+    position: absolute;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    left: 3px;
+    top: -1px;
+}
+
+.agreement input:disabled {
+    opacity: 0.45;
     cursor: not-allowed;
 }
 
+/* Button */
+
+button {
+    width: 100%;
+    margin-top: 24px;
+    padding: 17px;
+    border: 1px solid rgba(216,180,254,0.25);
+    border-radius: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: white;
+    background: linear-gradient(100deg, #7e22ce, #a855f7, #9333ea);
+    box-shadow: 0 5px 25px rgba(147,51,234,0.2);
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+button:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(168,85,247,0.4);
+}
+
+button:disabled {
+    background: #30253e;
+    color: #81738f;
+    border-color: #40334f;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* Footer note */
+
+.footer-note {
+    text-align: center;
+    color: #776987;
+    font-size: 10px;
+    margin-top: 18px;
+    letter-spacing: 0.4px;
+}
+
+/* Mobile */
+
 @media(max-width:600px) {
     body {
-        padding: 12px;
+        padding: 15px 10px;
+    }
+
+    .container {
+        border-radius: 15px;
     }
 
     header {
-        padding: 20px;
+        padding: 35px 23px 30px;
+    }
+
+    header h1 {
+        letter-spacing: -2px;
+    }
+
+    header::after {
+        font-size: 180px;
+        right: 5px;
+        top: -30px;
+    }
+
+    .info-strip {
+        padding: 14px 23px;
+    }
+
+    .section-heading {
+        padding: 22px 23px 0;
     }
 
     .terms {
         height: 450px;
-        padding: 20px;
+        padding: 24px 23px 35px;
     }
 
     .footer {
-        padding: 20px;
+        padding: 24px 23px;
+    }
+
+    p, li {
+        font-size: 13px;
     }
 }
+
 </style>
 </head>
 
@@ -157,218 +458,252 @@ button:disabled {
 
 <div class="container">
 
-<header>
-    <h1>Nexora</h1>
+    <header>
+        <div class="header-content">
 
-    <span class="org-badge">
-        An initiative by LocalGhosters & Entropy^
-    </span>
+            <div class="top-label">
+                <span class="status-dot"></span>
+                INNOVATION • ENTREPRENEURSHIP • EXECUTION
+            </div>
 
-    <p style="margin-top:12px;">Rules, Regulations & Participant Agreement</p>
-    <p>Official Competition Guidelines | November 2026</p>
-</header>
+            <h1>NEXORA</h1>
 
-<div class="terms" id="terms">
+            <span class="org-badge">
+                NEXORA | An initiative by LocalGhosters & Entropy^
+            </span>
 
-<h2>1. Introduction</h2>
+            <p class="subtitle">
+                Rules, Regulations & Participant Agreement
+            </p>
 
-<p>Nexora is a Shark Tank-inspired innovation and entrepreneurship competition hosted at school. It provides participants with an opportunity to develop, present and defend their ideas in front of a judging panel.</p>
+            <p class="date">
+                Official Competition Guidelines | November 2026
+            </p>
 
-<p>The competition focuses on creativity, problem-solving, innovation, technical ability and the practical execution of ideas.</p>
+        </div>
+    </header>
 
-<p>By participating in Nexora, all participants agree to follow the rules and regulations outlined in this document.</p>
+    <div class="info-strip">
+        <div class="info-icon">◷</div>
+        <div class="info-text">
+            <strong>60 MINUTES. ONE IDEA. YOUR EXECUTION.</strong><br>
+            Read all competition rules before proceeding.
+        </div>
+    </div>
 
+    <div class="section-heading">
+        <h3>Competition Guidelines</h3>
+        <span>READ CAREFULLY</span>
+    </div>
 
-<h2>2. Time Limit</h2>
+    <div class="terms" id="terms">
 
-<p>Each participant will be allocated exactly 60 minutes for their assigned competition session.</p>
+        <h2>1. Introduction</h2>
 
-<ul>
-    <li>Participants must complete their work within the allocated time.</li>
-    <li>The timer begins when the participant's session officially starts.</li>
-    <li>Extensions will not be granted unless explicitly approved by the organisers.</li>
-    <li>Participants must manage their time responsibly.</li>
-    <li>Any work presented must comply with the competition's originality and AI policies.</li>
-</ul>
+        <p>Nexora is a Shark Tank-inspired innovation and entrepreneurship competition hosted at school. It provides participants with an opportunity to develop, present and defend their ideas in front of a judging panel.</p>
 
-<p>Participants are expected to make effective use of the available time rather than focus on unnecessary features or incomplete ideas.</p>
+        <p>The competition focuses on creativity, problem-solving, innovation, technical ability and the practical execution of ideas.</p>
 
+        <p>By participating in Nexora, all participants agree to follow the rules and regulations outlined in this document.</p>
 
-<h2>3. Artificial Intelligence (AI) Policy</h2>
 
-<p>Nexora recognises that artificial intelligence can be a useful tool for improving productivity. Therefore, limited AI assistance is permitted.</p>
+        <h2>2. Time Limit</h2>
 
-<p><b>Permitted AI Usage:</b></p>
+        <p>Each participant will be allocated exactly 60 minutes for their assigned competition session.</p>
 
-<ul>
-    <li>Brainstorming ideas and exploring possible approaches.</li>
-    <li>Understanding programming concepts and technical documentation.</li>
-    <li>Debugging code written by the participant.</li>
-    <li>Explaining errors and suggesting improvements.</li>
-    <li>Improving workflow efficiency and productivity.</li>
-    <li>Researching general concepts and learning unfamiliar technologies.</li>
-</ul>
+        <ul>
+            <li>Participants must complete their work within the allocated time.</li>
+            <li>The timer begins when the participant's session officially starts.</li>
+            <li>Extensions will not be granted unless explicitly approved by the organisers.</li>
+            <li>Participants must manage their time responsibly.</li>
+            <li>Any work presented must comply with the competition's originality and AI policies.</li>
+        </ul>
 
-<p><b>Prohibited AI Usage:</b></p>
+        <p>Participants are expected to make effective use of the available time rather than focus on unnecessary features or incomplete ideas.</p>
 
-<ul>
-    <li>Using AI to develop the entire project or application.</li>
-    <li>Asking AI to generate the complete project and submitting it as your own work.</li>
-    <li>Having AI independently implement the core functionality of your project.</li>
-    <li>Using AI-generated complete solutions as a substitute for your own development.</li>
-    <li>Misrepresenting AI-generated work as independently developed work.</li>
-</ul>
 
-<p><b>STRICT ENFORCEMENT:</b> Participants caught using AI for full or substantial project development during the competition will be immediately disqualified.</p>
+        <h2>3. Artificial Intelligence (AI) Policy</h2>
 
-<p>There will be NO exceptions to this rule. Claims of time pressure, convenience or lack of technical knowledge will not be accepted as justification.</p>
+        <p>Nexora recognises that artificial intelligence can be a useful tool for improving productivity. Therefore, limited AI assistance is permitted.</p>
 
-<p>AI is intended to assist participants, not replace their creativity, problem-solving or development efforts.</p>
+        <p><b>Permitted AI Usage:</b></p>
 
+        <ul>
+            <li>Brainstorming ideas and exploring possible approaches.</li>
+            <li>Understanding programming concepts and technical documentation.</li>
+            <li>Debugging code written by the participant.</li>
+            <li>Explaining errors and suggesting improvements.</li>
+            <li>Improving workflow efficiency and productivity.</li>
+            <li>Researching general concepts and learning unfamiliar technologies.</li>
+        </ul>
 
-<h2>4. Originality & Ownership</h2>
+        <p><b>Prohibited AI Usage:</b></p>
 
-<p>All participants are expected to demonstrate genuine involvement in the creation of their projects.</p>
+        <ul>
+            <li>Using AI to develop the entire project or application.</li>
+            <li>Asking AI to generate the complete project and submitting it as your own work.</li>
+            <li>Having AI independently implement the core functionality of your project.</li>
+            <li>Using AI-generated complete solutions as a substitute for your own development.</li>
+            <li>Misrepresenting AI-generated work as independently developed work.</li>
+        </ul>
 
-<ul>
-    <li>Projects must represent the participant's own effort and understanding.</li>
-    <li>Copying another participant's project or submitting someone else's work is prohibited.</li>
-    <li>Existing open-source libraries, frameworks and tools may be used where appropriate.</li>
-    <li>Participants must be able to explain the technologies and major components used in their projects.</li>
-    <li>Previously existing work must not be falsely presented as something developed entirely during Nexora.</li>
-</ul>
+        <p><b>STRICT ENFORCEMENT:</b> Participants caught using AI for full or substantial project development during the competition will be immediately disqualified.</p>
 
+        <p>There will be NO exceptions to this rule. Claims of time pressure, convenience or lack of technical knowledge will not be accepted as justification.</p>
 
-<h2>5. Project Development</h2>
+        <p>AI is intended to assist participants, not replace their creativity, problem-solving or development efforts.</p>
 
-<p>Participants may develop any idea that is appropriate for the competition and can be reasonably demonstrated.</p>
 
-<p>Projects may include software applications, websites, technical solutions, business concepts, prototypes or other innovative ideas.</p>
+        <h2>4. Originality & Ownership</h2>
 
-<ul>
-    <li>Participants should focus on solving a real or clearly defined problem.</li>
-    <li>Projects should have a clear purpose and intended audience.</li>
-    <li>Participants should prioritise functionality and meaningful execution over unnecessary complexity.</li>
-    <li>Any external resources, APIs, frameworks or libraries used should be acknowledged when relevant.</li>
-</ul>
+        <p>All participants are expected to demonstrate genuine involvement in the creation of their projects.</p>
 
+        <ul>
+            <li>Projects must represent the participant's own effort and understanding.</li>
+            <li>Copying another participant's project or submitting someone else's work is prohibited.</li>
+            <li>Existing open-source libraries, frameworks and tools may be used where appropriate.</li>
+            <li>Participants must be able to explain the technologies and major components used in their projects.</li>
+            <li>Previously existing work must not be falsely presented as something developed entirely during Nexora.</li>
+        </ul>
 
-<h2>6. School Environment & Conduct</h2>
 
-<p>Nexora will take place during official school hours. All participants are expected to maintain appropriate behaviour throughout the competition.</p>
+        <h2>5. Project Development</h2>
 
-<ul>
-    <li>Participants must follow instructions given by organisers and supervising teachers.</li>
-    <li>Participants must not disrupt other competitors.</li>
-    <li>Unauthorised collaboration, sharing of solutions or interference with another participant's work is prohibited.</li>
-    <li>Participants must respect school equipment, facilities and resources.</li>
-    <li>Any attempt to gain an unfair advantage may result in disqualification.</li>
-</ul>
+        <p>Participants may develop any idea that is appropriate for the competition and can be reasonably demonstrated.</p>
 
+        <p>Projects may include software applications, websites, technical solutions, business concepts, prototypes or other innovative ideas.</p>
 
-<h2>7. Internet & External Resources</h2>
+        <ul>
+            <li>Participants should focus on solving a real or clearly defined problem.</li>
+            <li>Projects should have a clear purpose and intended audience.</li>
+            <li>Participants should prioritise functionality and meaningful execution over unnecessary complexity.</li>
+            <li>Any external resources, APIs, frameworks or libraries used should be acknowledged when relevant.</li>
+        </ul>
 
-<p>Participants may use the internet for legitimate research, documentation and accessing development resources, subject to school restrictions and organiser instructions.</p>
 
-<p>Using online resources to copy complete solutions, obtain another participant's work or bypass competition rules is prohibited.</p>
+        <h2>6. School Environment & Conduct</h2>
 
+        <p>Nexora will take place during official school hours. All participants are expected to maintain appropriate behaviour throughout the competition.</p>
 
-<h2>8. Presentation & Pitching</h2>
+        <ul>
+            <li>Participants must follow instructions given by organisers and supervising teachers.</li>
+            <li>Participants must not disrupt other competitors.</li>
+            <li>Unauthorised collaboration, sharing of solutions or interference with another participant's work is prohibited.</li>
+            <li>Participants must respect school equipment, facilities and resources.</li>
+            <li>Any attempt to gain an unfair advantage may result in disqualification.</li>
+        </ul>
 
-<p>Participants must be prepared to present their ideas and explain their projects to the judging panel.</p>
 
-<p>A presentation may cover the following:</p>
+        <h2>7. Internet & External Resources</h2>
 
-<ul>
-    <li>The problem being addressed.</li>
-    <li>The proposed solution and how it works.</li>
-    <li>The target audience and potential users.</li>
-    <li>What makes the idea innovative or different.</li>
-    <li>The technologies and methods used.</li>
-    <li>Potential applications, feasibility and future improvements.</li>
-</ul>
+        <p>Participants may use the internet for legitimate research, documentation and accessing development resources, subject to school restrictions and organiser instructions.</p>
 
-<p>Participants should be prepared to demonstrate their work and answer questions from the judges.</p>
+        <p>Using online resources to copy complete solutions, obtain another participant's work or bypass competition rules is prohibited.</p>
 
 
-<h2>9. Judging Criteria</h2>
+        <h2>8. Presentation & Pitching</h2>
 
-<p>Projects may be evaluated using the following criteria:</p>
+        <p>Participants must be prepared to present their ideas and explain their projects to the judging panel.</p>
 
-<ul>
-    <li><b>Innovation:</b> Originality and creativity of the idea.</li>
-    <li><b>Problem Solving:</b> How effectively the project addresses its intended problem.</li>
-    <li><b>Execution:</b> Quality of implementation and functionality.</li>
-    <li><b>Feasibility:</b> Practicality and potential for real-world use.</li>
-    <li><b>Presentation:</b> Clarity, communication and ability to defend the idea.</li>
-    <li><b>Understanding:</b> The participant's knowledge of their own project.</li>
-</ul>
+        <p>A presentation may cover the following:</p>
 
-<p>The judging panel's decisions will be considered final.</p>
+        <ul>
+            <li>The problem being addressed.</li>
+            <li>The proposed solution and how it works.</li>
+            <li>The target audience and potential users.</li>
+            <li>What makes the idea innovative or different.</li>
+            <li>The technologies and methods used.</li>
+            <li>Potential applications, feasibility and future improvements.</li>
+        </ul>
 
+        <p>Participants should be prepared to demonstrate their work and answer questions from the judges.</p>
 
-<h2>10. Disqualification</h2>
 
-<p>The organisers reserve the right to disqualify participants who violate competition rules.</p>
+        <h2>9. Judging Criteria</h2>
 
-<p>Grounds for disqualification include:</p>
+        <p>Projects may be evaluated using the following criteria:</p>
 
-<ul>
-    <li>Prohibited AI usage, including full AI-based project development.</li>
-    <li>Plagiarism or submission of another person's work.</li>
-    <li>Deliberate misrepresentation of project development.</li>
-    <li>Unauthorised collaboration or unfair assistance.</li>
-    <li>Intentional disruption of the competition.</li>
-    <li>Failure to follow instructions from organisers or supervising authorities.</li>
-</ul>
+        <ul>
+            <li><b>Innovation:</b> Originality and creativity of the idea.</li>
+            <li><b>Problem Solving:</b> How effectively the project addresses its intended problem.</li>
+            <li><b>Execution:</b> Quality of implementation and functionality.</li>
+            <li><b>Feasibility:</b> Practicality and potential for real-world use.</li>
+            <li><b>Presentation:</b> Clarity, communication and ability to defend the idea.</li>
+            <li><b>Understanding:</b> The participant's knowledge of their own project.</li>
+        </ul>
 
-<p>Violations of the AI policy involving full or substantial AI-based development will result in immediate elimination without exceptions.</p>
+        <p>The judging panel's decisions will be considered final.</p>
 
 
-<h2>11. Organiser Authority</h2>
+        <h2>10. Disqualification</h2>
 
-<p>The organisers and supervising teachers reserve the right to interpret these rules, monitor competition activities, investigate suspected violations and take appropriate action.</p>
+        <p>The organisers reserve the right to disqualify participants who violate competition rules.</p>
 
-<p>Any situation not explicitly covered in this document will be addressed by the organisers. Participants are expected to cooperate with any reasonable verification of their work.</p>
+        <p>Grounds for disqualification include:</p>
 
+        <ul>
+            <li>Prohibited AI usage, including full AI-based project development.</li>
+            <li>Plagiarism or submission of another person's work.</li>
+            <li>Deliberate misrepresentation of project development.</li>
+            <li>Unauthorised collaboration or unfair assistance.</li>
+            <li>Intentional disruption of the competition.</li>
+            <li>Failure to follow instructions from organisers or supervising authorities.</li>
+        </ul>
 
-<h2>12. Project Demonstration & Technical Issues</h2>
+        <p>Violations of the AI policy involving full or substantial AI-based development will result in immediate elimination without exceptions.</p>
 
-<p>Participants are responsible for ensuring that their projects are ready for demonstration.</p>
 
-<p>Technical issues, software failures or incomplete implementations should be communicated to the organisers. Such issues will be considered at the discretion of the judging panel and will not automatically guarantee additional time.</p>
+        <h2>11. Organiser Authority</h2>
 
+        <p>The organisers and supervising teachers reserve the right to interpret these rules, monitor competition activities, investigate suspected violations and take appropriate action.</p>
 
-<h2>13. Final Agreement</h2>
+        <p>Any situation not explicitly covered in this document will be addressed by the organisers. Participants are expected to cooperate with any reasonable verification of their work.</p>
 
-<p>Participation in Nexora indicates acceptance of all competition rules and regulations.</p>
 
-<p>Participants acknowledge that they are responsible for the originality of their work, their use of AI tools, their conduct and their adherence to the allocated time limit.</p>
+        <h2>12. Project Demonstration & Technical Issues</h2>
 
-<p>The purpose of Nexora is to encourage independent thinking, innovation, entrepreneurship and practical problem-solving. Participants are expected to compete fairly and demonstrate their own abilities.</p>
+        <p>Participants are responsible for ensuring that their projects are ready for demonstration.</p>
 
+        <p>Technical issues, software failures or incomplete implementations should be communicated to the organisers. Such issues will be considered at the discretion of the judging panel and will not automatically guarantee additional time.</p>
 
-<h2>14. Acknowledgement</h2>
 
-<p>By selecting the agreement checkbox and continuing, you confirm that you have read, understood and agreed to follow all the rules and regulations of Nexora.</p>
+        <h2>13. Final Agreement</h2>
 
-<p>Failure to comply with these rules may result in penalties, including immediate disqualification.</p>
+        <p>Participation in Nexora indicates acceptance of all competition rules and regulations.</p>
 
-<p>Good luck, and welcome to Nexora!</p>
+        <p>Participants acknowledge that they are responsible for the originality of their work, their use of AI tools, their conduct and their adherence to the allocated time limit.</p>
 
-</div>
+        <p>The purpose of Nexora is to encourage independent thinking, innovation, entrepreneurship and practical problem-solving. Participants are expected to compete fairly and demonstrate their own abilities.</p>
 
 
-<div class="footer">
+        <h2>14. Acknowledgement</h2>
 
-<label>
-    <input type="checkbox" id="agree" disabled>
-    I have read, understood and agree to all Nexora Rules & Regulations.
-</label>
+        <p>By selecting the agreement checkbox and continuing, you confirm that you have read, understood and agreed to follow all the rules and regulations of Nexora.</p>
 
-<button id="continue" disabled>Continue</button>
+        <p>Failure to comply with these rules may result in penalties, including immediate disqualification.</p>
 
-</div>
+        <p>Good luck, and welcome to Nexora!</p>
+
+    </div>
+
+    <div class="footer">
+
+        <label class="agreement">
+            <input type="checkbox" id="agree" disabled>
+            <span>
+                I have read, understood and agree to all Nexora Rules & Regulations.
+            </span>
+        </label>
+
+        <button id="continue" disabled>
+            ACCEPT & CONTINUE →
+        </button>
+
+        <div class="footer-note">
+            NEXORA • AN INITIATIVE BY LOCALGHOSTERS & ENTROPY^
+        </div>
+
+    </div>
 
 </div>
 
@@ -390,7 +725,7 @@ function checkScroll() {
 
 }
 
-// Also handle content that does not require scrolling.
+// Enable checkbox if scrolling is not required
 if (terms.scrollHeight <= terms.clientHeight + 5) {
     checkbox.disabled = false;
 }
